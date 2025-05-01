@@ -1,0 +1,26 @@
+name: Auto Commit
+
+on:
+  schedule:
+    - cron: '0 1 * * *' # chạy mỗi ngày lúc 08:00 AM (UTC+7)
+  workflow_dispatch: # để bạn có thể chạy thủ công nếu cần
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set Git config
+        run: |
+          git config user.name "zohuyhieuzo03"
+          git config user.email "hhleas03@gmail.com"
+
+      - name: Auto commit
+        run: |
+          echo "Update: $(date)" >> update.log
+          git add .
+          git commit -m "chore: auto update $(date)"
+          git push
