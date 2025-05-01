@@ -1,5 +1,8 @@
 name: Auto Commit
 
+permissions:
+  contents: write  # Cho phép actions được push code
+  
 on:
   schedule:
     - cron: '0 1 * * *' # chạy mỗi ngày lúc 08:00 AM (UTC+7)
